@@ -1,14 +1,9 @@
 # Write your MySQL query statement below
-with cteMax
-AS(
-select num,
- count(num) as c
+select Max(num) as num from 
+(
+select num, count(*)
  from MyNumbers
  group by num
-)
-select Max(num) as num from cteMax
-where c = 1
-
-
-
+ having count(*) = 1
+) as t
 
